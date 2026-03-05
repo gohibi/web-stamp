@@ -11,6 +11,8 @@ const Footer = () =>{
                             <img 
                                 src={logo} 
                                 alt="Stamp Tech Ivoire" 
+                                width={50}
+                                height={50}
                                 className="h-8 w-auto object-contain"
                             />
                             <span className="font-display text-lg font-bold">STAMP TECH IVOIRE</span>
