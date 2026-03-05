@@ -1,68 +1,121 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: 150 10% 98%;
+    --foreground: 160 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 30% 10%;
+
+    --primary: 160 60% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 15% 94%;
+    --secondary-foreground: 160 30% 10%;
+
+    --muted: 150 10% 94%;
+    --muted-foreground: 160 10% 45%;
+
+    --accent: 160 50% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 150 15% 88%;
+    --input: 150 15% 88%;
+    --ring: 160 60% 30%;
+
+    --radius: 0.75rem;
+
+    --emerald-50: 152 80% 96%;
+    --emerald-100: 149 80% 90%;
+    --emerald-200: 152 76% 80%;
+    --emerald-300: 156 72% 67%;
+    --emerald-400: 158 64% 52%;
+    --emerald-500: 160 84% 39%;
+    --emerald-600: 161 94% 30%;
+    --emerald-700: 163 94% 24%;
+    --emerald-800: 163 88% 20%;
+    --emerald-900: 164 86% 16%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(160 60% 30%), hsl(158 64% 42%));
+    --gradient-hero: linear-gradient(160deg, hsl(164 86% 16%) 0%, hsl(160 84% 32%) 50%, hsl(158 64% 42%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(152 80% 96%) 0%, hsl(0 0% 100%) 100%);
+
+    --shadow-sm: 0 1px 3px 0 hsl(160 30% 10% / 0.06);
+    --shadow-md: 0 4px 16px -2px hsl(160 30% 10% / 0.08);
+    --shadow-lg: 0 12px 40px -8px hsl(160 30% 10% / 0.12);
+    --shadow-emerald: 0 8px 30px -6px hsl(160 60% 30% / 0.25);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --background: 164 30% 6%;
+    --foreground: 150 10% 95%;
+    --card: 164 25% 10%;
+    --card-foreground: 150 10% 95%;
+    --popover: 164 25% 10%;
+    --popover-foreground: 150 10% 95%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 164 86% 10%;
+    --secondary: 164 20% 15%;
+    --secondary-foreground: 150 10% 95%;
+    --muted: 164 20% 15%;
+    --muted-foreground: 150 10% 60%;
+    --accent: 158 64% 52%;
+    --accent-foreground: 164 86% 10%;
+    --border: 164 20% 18%;
+    --input: 164 20% 18%;
+    --ring: 158 64% 52%;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  .bg-hero-gradient {
+    background-image: var(--gradient-hero);
+  }
+  .bg-subtle-gradient {
+    background-image: var(--gradient-subtle);
+  }
+  .shadow-emerald {
+    box-shadow: var(--shadow-emerald);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
